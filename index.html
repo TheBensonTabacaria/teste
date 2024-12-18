@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Benson Tabacaria - Carrinho de Compras</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+      }
+      header {
+        background-color: #41290d;
+        color: #fff;
+        text-align: center;
+        padding: 1rem 0;
+      }
+      .categoria {
+        margin: 20px;
+      }
+      h2 {
+        color: #444;
+      }
+      .produto {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 10px;
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .produto img {
+        width: 200px;
+        height: auto;
+        object-fit: cover;
+        margin-right: 10px;
+      }
+      .produto button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+      .produto button:hover {
+        background-color: #218838;
+      }
+      .carrinho {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 300px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+      }
+      .carrinho h3 {
+        margin: 0 0 10px;
+      }
+      .total {
+        font-weight: bold;
+        margin: 10px 0;
+      }
+      .whatsapp-button {
+        background-color: #25d366;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .whatsapp-button:hover {
+        background-color: #1ebe57;
+      }
+      .carrinho ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      .carrinho ul li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+      .carrinho ul li button {
+        background-color: #dc3545;
+        padding: 5px 10px;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      .carrinho ul li button:hover {
+        background-color: #c82333;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="images/logo-tabacaria.png" width="200" />
+      <h1>The Benson Tabacaria</h1>
+      <p>Adicione produtos ao carrinho e peça pelo WhatsApp!</p>
+    </header>
+
+    <!-- Produtos -->
+    <section class="categoria">
+      <h2>Sedas</h2>
+      <div class="produto">
+        <img src="images/raw-black.png" alt="Raw Black" />
+        <p><strong>Raw Black</strong> - R$ 11,00</p>
+        <button id="raw-black" onclick="adicionarProduto('Raw Black', 11)">
+          Adicionar
+        </button>
+      </div>
+      <div class="produto">
+        <img src="images/bem-bolado-brown.png" alt="Bem Bolado Brown" />
+        <p><strong>Bem Bolado Brown</strong> - R$ 4,50</p>
+        <button
+          id="bem-bolado-brown"
+          onclick="adicionarProduto('Bem Bolado Brown', 4.5)"
+        >
+          Adicionar
+        </button>
+      </div>
+      <div class="produto">
+        <img src="images/ocb-organica.png" alt="OCB Orgânica" />
+        <p><strong>OCB Orgânica</strong> - R$ 7,00</p>
+        <button id="ocb-organica" onclick="adicionarProduto('OCB Orgânica', 7)">
+          Adicionar
+        </button>
+      </div>
+
+      <h2>Tabacos</h2>
+      <div class="produto">
+        <img src="images/amsterdam.png" alt="Amsterdam" />
+        <p><strong>Amsterdam</strong> - R$ 22,00</p>
+        <button id="amsterdam" onclick="adicionarProduto('Amsterdam', 22)">
+          Adicionar
+        </button>
+      </div>
+      <div class="produto">
+        <img src="images/tonabe.png" alt="TonaBê" />
+        <p><strong>TonaBê</strong> - R$ 16,00</p>
+        <button id="tonabe" onclick="adicionarProduto('TonaBê', 16)">
+          Adicionar
+        </button>
+      </div>
+      <div class="produto">
+        <img src="images/pueblo.png" alt="Pueblo" />
+        <p><strong>Pueblo</strong> - R$ 50,00</p>
+        <button id="pueblo" onclick="adicionarProduto('Pueblo', 50)">
+          Adicionar
+        </button>
+      </div>
+
+      <h2>Cigarros de Palha</h2>
+      <div class="produto">
+        <img src="images/mandelle.png" alt="Mandelle" />
+        <p><strong>Mandelle</strong> - R$ 20,00</p>
+        <button id="mandelle" onclick="adicionarProduto('Mandelle', 20)">
+          Adicionar
+        </button>
+      </div>
+      <div class="produto">
+        <img src="images/coyote.png" alt="Coyote" />
+        <p><strong>Coyote</strong> - R$ 17,00</p>
+        <button id="coyote" onclick="adicionarProduto('Coyote', 17)">
+          Adicionar
+        </button>
+      </div>
+      <div class="produto">
+        <img src="images/porto-faria.png" alt="Porto Faria" />
+        <p><strong>Porto Faria</strong> - R$ 20,00</p>
+        <button id="porto-faria" onclick="adicionarProduto('Porto Faria', 20)">
+          Adicionar
+        </button>
+      </div>
+    </section>
+
+    <!-- Carrinho -->
+    <section class="carrinho">
+      <h3>Carrinho de Compras</h3>
+      <ul id="lista-carrinho"></ul>
+      <p class="total">Total: R$ <span id="total">0,00</span></p>
+      <button class="whatsapp-button" onclick="enviarPedido()">
+        Pedir no WhatsApp
+      </button>
+    </section>
+
+    <script>
+      let carrinho = [];
+      let total = 0;
+
+      function adicionarProduto(nome, preco) {
+        let produtoExistente = carrinho.find((item) => item.nome === nome);
+        if (produtoExistente) {
+          produtoExistente.quantidade++;
+        } else {
+          carrinho.push({ nome, preco, quantidade: 1 });
+        }
+        total += preco;
+        atualizarCarrinho();
+      }
+
+      function atualizarCarrinho() {
+        const listaCarrinho = document.getElementById("lista-carrinho");
+        const totalElemento = document.getElementById("total");
+
+        listaCarrinho.innerHTML = "";
+        carrinho.forEach((item, index) => {
+          const li = document.createElement("li");
+          li.innerHTML = `${item.nome} - R$ ${item.preco
+            .toFixed(2)
+            .replace(".", ",")} x ${item.quantidade} 
+          <button onclick="removerProduto(${index})">Remover</button>`;
+          listaCarrinho.appendChild(li);
+        });
+
+        totalElemento.textContent = total.toFixed(2).replace(".", ",");
+      }
+
+      function removerProduto(index) {
+        const produto = carrinho[index];
+        total -= produto.preco * produto.quantidade;
+        carrinho.splice(index, 1);
+        atualizarCarrinho();
+      }
+
+      function enviarPedido() {
+        if (carrinho.length === 0) {
+          alert("Seu carrinho está vazio. Adicione algum produto!");
+          return;
+        }
+
+        let mensagem = "Olá, gostaria de fazer um pedido:\n\n";
+        carrinho.forEach((item) => {
+          mensagem += `- ${item.nome} (x${item.quantidade}): R$ ${item.preco
+            .toFixed(2)
+            .replace(".", ",")}\n`;
+        });
+        mensagem += `\nTotal: R$ ${total.toFixed(2).replace(".", ",")}`;
+        window.open(
+          `https://api.whatsapp.com/send?phone=5535991061223&text=${encodeURIComponent(
+            mensagem
+          )}`,
+          "_blank"
+        );
+      }
+    </script>
+  </body>
+</html>
